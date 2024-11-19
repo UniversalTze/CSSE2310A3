@@ -9,7 +9,7 @@ To access the linux environment, a SSH or "Secure Shell" was used. For version c
 
 ## Marks 
 - 60.1/65 (Autograder Score)
-- Future improvements: Make sure that file descriptors used (3 and 4) are not open. Or if currently open, close them and then create a new file descriptor using *open()*. 
+- Future improvements: Make sure that file descriptors used (3 and 4) are not open. If currently open, close them and then create a new file descriptor using *open()*. 
 
 ### NEED TO MAKE CHANGES TO BELOW
 ## Instructions to run the game 
