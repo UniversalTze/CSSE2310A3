@@ -1,0 +1,871 @@
+URL to view log online:
+https://source.eait.uq.edu.au/viewvc/csse2310-sem1-s4703754/trunk/a3/?view=log
+
+Retrieving logs at Thu May 4 19:59:48 AEST 2023
+------------------------------------------------------------------------
+r1 | uqpsutto | 2023-03-01 20:47:37 +1000 (Wed, 01 Mar 2023) | 1 line
+Changed paths:
+   A /play
+   A /prac
+   A /trunk
+   A /trunk/a1
+   A /trunk/a3
+   A /trunk/a4
+
+Initial repository structure
+
+
+------------------------------------------------------------------------
+r56 | s4703754 | 2023-04-11 17:06:04 +1000 (Tue, 11 Apr 2023) | 2 lines
+Changed paths:
+   A /trunk/a3/Makefile
+   A /trunk/a3/a3.c
+
+First commit for a3. Note: Makefile may change when using one or more c files to compile and link. a3.c name might change as I continue on during this assignment.
+
+
+Index: Makefile
+ Makefile |   14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+Index: a3.c
+ a3.c |    9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+------------------------------------------------------------------------
+r57 | s4703754 | 2023-04-11 17:20:02 +1000 (Tue, 11 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/Makefile
+   A /trunk/a3/testuqwordiply.c
+
+Modified Makefile to match the testuqwordiply.c file. Changed a3.c file name due to spec.
+
+
+Index: Makefile
+ Makefile |    8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |    9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+------------------------------------------------------------------------
+r58 | s4703754 | 2023-04-11 17:22:52 +1000 (Tue, 11 Apr 2023) | 2 lines
+Changed paths:
+   D /trunk/a3/a3.c
+
+Removing a3.c from this repo.
+
+
+Index: a3.c (deleted)
+
+------------------------------------------------------------------------
+r59 | s4703754 | 2023-04-11 18:06:10 +1000 (Tue, 11 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Added structure on how to check validity of command line arguments. Created 3 seperate functions to check validity depending on number of inputs on the command line.
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |   34 +++++++++++++++++++++++++++++++++-
+ 1 file changed, 33 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r60 | s4703754 | 2023-04-11 21:00:03 +1000 (Tue, 11 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Added more functionality for checking command line arguments when given 4 or 5 arguments on the command line. 
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |   48 +++++++++++++++++++++++++++++++++++++-----------
+ 1 file changed, 37 insertions(+), 11 deletions(-)
+
+------------------------------------------------------------------------
+r61 | s4703754 | 2023-04-12 17:38:15 +1000 (Wed, 12 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/Makefile
+   M /trunk/a3/testuqwordiply.c
+
+Finished functionality for checking starter arguments. Started to create functionality for processing the job file
+
+
+Index: Makefile
+ Makefile |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |   33 +++++++++++++++++++++++++--------
+ 1 file changed, 25 insertions(+), 8 deletions(-)
+
+------------------------------------------------------------------------
+r62 | s4703754 | 2023-04-12 21:33:35 +1000 (Wed, 12 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/Makefile
+   A /trunk/a3/commands.c
+   A /trunk/a3/commands.h
+   M /trunk/a3/testuqwordiply.c
+
+Modified Makefile as two more files were created to link to testuqwordiply.c. testuqwordiply.c can now handle invalid commands on the command line. Commands.h is the header file for commands.c and is linekd to a3 file. In commands.c, added functionality structure for checking the job file.
+
+
+Index: Makefile
+ Makefile |    7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+Index: commands.c
+ commands.c |   45 +++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+Index: commands.h
+ commands.h |   29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+Index: testuqwordiply.c
+ testuqwordiply.c |   20 ++++++++++++++++++--
+ 1 file changed, 18 insertions(+), 2 deletions(-)
+
+------------------------------------------------------------------------
+r63 | s4703754 | 2023-04-13 15:16:54 +1000 (Thu, 13 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/Makefile
+   M /trunk/a3/commands.c
+   M /trunk/a3/commands.h
+   M /trunk/a3/testuqwordiply.c
+
+Created functionality for processing the job files. Ensures that there are no memory leaks for when program exits with status's 4 or 5. Added a couple functions into command.c. One to free struct pointer memory and everything malloc'ed with it. A function to handle exit status 4 and another to handle exit status 5.  
+
+
+Index: Makefile
+ Makefile |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Index: commands.c
+ commands.c |  101 +++++++++++++++++++++++++++++++++++++++++++++++++++----------
+ 1 file changed, 85 insertions(+), 16 deletions(-)
+Index: commands.h
+ commands.h |   18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r64 | s4703754 | 2023-04-13 17:09:33 +1000 (Thu, 13 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/commands.c
+   M /trunk/a3/commands.h
+   M /trunk/a3/testuqwordiply.c
+
+Added more functionality into commands.c. Can now exit status 6 properly while freeing all appropriate memory to avoid memory leaks. 
+
+
+Index: commands.c
+ commands.c |   50 +++++++++++++++++++++++++++++++-------------------
+ 1 file changed, 31 insertions(+), 19 deletions(-)
+Index: commands.h
+ commands.h |    7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |    1 +
+ 1 file changed, 1 insertion(+)
+
+------------------------------------------------------------------------
+r65 | s4703754 | 2023-04-13 18:24:19 +1000 (Thu, 13 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/commands.c
+   M /trunk/a3/commands.h
+   M /trunk/a3/testuqwordiply.c
+
+Program can now properly handle invalid inputs in the jobfile. Fixed little bugs in commands.c that affected lines in the malloc array. Moving towards forking and piping in testuqwordiply.c.
+
+
+Index: commands.c
+ commands.c |   29 +++++++++++++++++------------
+ 1 file changed, 17 insertions(+), 12 deletions(-)
+Index: commands.h
+ commands.h |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |    3 +++
+ 1 file changed, 3 insertions(+)
+
+------------------------------------------------------------------------
+r66 | s4703754 | 2023-04-15 11:55:29 +1000 (Sat, 15 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Fixed up a bug in testuqwordiply.c when handling 3 arguments. It now ensures that it can handle absolute path names when entered in on the command line. Will need to fix the program when handling more than 3 arguments.
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |   22 +++++++++++++++++-----
+ 1 file changed, 17 insertions(+), 5 deletions(-)
+
+------------------------------------------------------------------------
+r68 | s4703754 | 2023-04-15 15:28:21 +1000 (Sat, 15 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Fixed testprogram and job file chekcs in check_three_args and check_five_args. Ensures that no optional commands can be entered in when 3 arguments specified. Also makes sure that jobfile and testprogram were given program name (found in directory) or absolute path if name contains "--". These were same issues in check_five_args 
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |   51 ++++++++++++++++++++++-----------------------------
+ 1 file changed, 22 insertions(+), 29 deletions(-)
+
+------------------------------------------------------------------------
+r69 | s4703754 | 2023-04-15 15:31:34 +1000 (Sat, 15 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Previous Commit I stated that bugs were fixed in check_five_args. However, check_five_args function was renamed to check_opcoms_args. All bugs were fixed in this function. Time to start running the jobs
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+------------------------------------------------------------------------
+r70 | s4703754 | 2023-04-15 18:38:56 +1000 (Sat, 15 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Added a boolean function check_flags() which indentifies is optional commands were entered into the command line. This is a void function and will set queitflags and parallelflags if those optional commands were indentified. Futher functionality will need to be done for creating processes and piping.
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |   34 +++++++++++++++++++++++++++++++++-
+ 1 file changed, 33 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r71 | s4703754 | 2023-04-17 13:19:14 +1000 (Mon, 17 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Added functionality to process_no_opt_args. Added comments on the structure of planned fork. Will start piping and forking soon.
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |   30 +++++++++++++++++++++++++++---
+ 1 file changed, 27 insertions(+), 3 deletions(-)
+
+------------------------------------------------------------------------
+r72 | s4703754 | 2023-04-17 18:17:23 +1000 (Mon, 17 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Process_no_opt_args was changed to process_args which just opens the file of each job and the starter arguments associated with the file in input file. Created another function called process_fork() which has the structure of the forking process when processing standard input.
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |   63 ++++++++++++++++++++++++++++++++++++++++++++++---------
+ 1 file changed, 53 insertions(+), 10 deletions(-)
+
+------------------------------------------------------------------------
+r73 | s4703754 | 2023-04-18 19:46:08 +1000 (Tue, 18 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Added a function called process_pipes to deal with uneccessary pipes in the child process. This may need to be modified as more pipes were just identified. Commiting now to have a functioning version of one pipe. 
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |   72 ++++++++++++++++++++++++++++++++++---------------------
+ 1 file changed, 45 insertions(+), 27 deletions(-)
+
+------------------------------------------------------------------------
+r74 | s4703754 | 2023-04-18 22:30:13 +1000 (Tue, 18 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Created a new function close_dangling_pipes, which will close all unnessary pipes when in the child processes. Modified process_pipes to process_pipes_stdin and also reduced the number of parameters due to the creatio of close_dangling_pipes. Also increased the paramaters of pipe_fds to 8, just to pipe everything all at once.
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |  109 +++++++++++++++++++++++++++++++++++++++----------------
+ 1 file changed, 78 insertions(+), 31 deletions(-)
+
+------------------------------------------------------------------------
+r75 | s4703754 | 2023-04-19 17:42:05 +1000 (Wed, 19 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Added a close_all_pipe function to close all pipes in the parent process. Also added a function that is used to process_pipes_stdout. This is done to redup the read end of standard out pipe of one process to 3 and dup2 the read pipe of another process to 4. Currently in a deadlock situation 
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |  116 ++++++++++++++++++++++++++++++++++---------------------
+ 1 file changed, 72 insertions(+), 44 deletions(-)
+
+------------------------------------------------------------------------
+r76 | s4703754 | 2023-04-20 16:53:12 +1000 (Thu, 20 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Fixed up a little deadlock pipe when piping information to uqcmp in process_forks. Can work on signals before doing the final uqcmp.
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |   16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
+
+------------------------------------------------------------------------
+r77 | s4703754 | 2023-04-20 18:39:57 +1000 (Thu, 20 Apr 2023) | 1 line
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Added the wait(2) when processing jobs sequentially. Also added the SIGKILL signals when processing jobs sequentially.
+
+Index: testuqwordiply.c
+ testuqwordiply.c |    6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r78 | s4703754 | 2023-04-20 18:54:56 +1000 (Thu, 20 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/Makefile
+   A /trunk/a3/process.c
+   A /trunk/a3/process.h
+   M /trunk/a3/testuqwordiply.c
+
+Modified makefile add link process.c and process.h. These are new files to assist in the development of testuqwordiply.c. Added all functions relating to processing input file, forking and piping was moved to process.c. 
+
+
+Index: Makefile
+ Makefile |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Index: process.c
+ process.c |  153 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 153 insertions(+)
+Index: process.h
+ process.h |   35 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+Index: testuqwordiply.c
+ testuqwordiply.c |  173 -------------------------------------------------------
+ 1 file changed, 2 insertions(+), 171 deletions(-)
+
+------------------------------------------------------------------------
+r79 | s4703754 | 2023-04-21 21:03:18 +1000 (Fri, 21 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+
+Deleteted process_pipes_stdin and process_pipes_stdout to reduce the duplication of code to keep me below the 50 line limit. Also malloc an integer array to make it easier to close pipes instead of using pointers. Modified pipe_fds so that it does not take any parameters now. It will return a malloc array of file descriptors. Deleted the function close_dangling_pipes, Added a function called process_standard_input that the first 2 children will call. Function will read the file and close appropriate pipe r/w ends. And it will also dup the appropriate ends. Created a function called uqcmp_stdout function that will close appropriate r/w pipes. Will also dup2() the correct pipes needed to exec uqcmp. Also deleted the deletd functions from process.h. Also Added the new functions to process.h and modified the parameters of existing functions.
+
+
+Index: process.c
+ process.c |  175 ++++++++++++++++++++++++++++++++++++++++++--------------------
+ 1 file changed, 119 insertions(+), 56 deletions(-)
+Index: process.h
+ process.h |   18 +++++++-----------
+ 1 file changed, 7 insertions(+), 11 deletions(-)
+
+------------------------------------------------------------------------
+r80 | s4703754 | 2023-04-21 21:34:46 +1000 (Fri, 21 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+
+Added some more functionality to uqcmp and process_forks. It can check both the standard output and the standard error streams. 
+
+
+Index: process.c
+ process.c |   70 +++++++++++++++++++++++++++-----------------------------------
+ 1 file changed, 31 insertions(+), 39 deletions(-)
+Index: process.h
+ process.h |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r81 | s4703754 | 2023-04-23 12:30:02 +1000 (Sun, 23 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+
+Cleaned up process forks by removing the consecutive wait and kill statements by putting pids in an array. Created a function called kill_reap_process that takes a an array of process ids that will kill and reap the process. Will also find the exit status from uqcmp. 
+
+
+Index: process.c
+ process.c |   41 +++++++++++++++++++++++++++--------------
+ 1 file changed, 27 insertions(+), 14 deletions(-)
+Index: process.h
+ process.h |    8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r82 | s4703754 | 2023-04-23 13:54:19 +1000 (Sun, 23 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+
+Program can now handle the exit status of uqcmp. Added code in kill_reap_process to do this and it can print the correct messages associated with it. 
+
+
+Index: process.c
+ process.c |   45 ++++++++++++++++++++++++---------------------
+ 1 file changed, 24 insertions(+), 21 deletions(-)
+
+------------------------------------------------------------------------
+r83 | s4703754 | 2023-04-23 22:05:12 +1000 (Sun, 23 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+   M /trunk/a3/testuqwordiply.c
+
+In process.c, Process args was modified to take one more parameter which is a boolean value of optional quiet command. That argument was passed along, with the current jobnumnber and the number of tests passed. process_uqcmp was modified by adding the quiet boolean ptr to it. It will now handle the cases when --quiet is mentioned on the command line. The kill_reap_process parameters were also modified. Function takes in the job number pointer and does what it needs to do accordingly. Removed two if statements from tetsuqwordiply.c main function and will now print out the number of test passed when running in sequential order. Modified process_args, process_forks and kill_reap_process to return integers, which represents the current passed tests.  
+
+
+Index: process.c
+ process.c |   79 ++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 47 insertions(+), 32 deletions(-)
+Index: process.h
+ process.h |   14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |   13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
+
+------------------------------------------------------------------------
+r84 | s4703754 | 2023-04-24 16:53:26 +1000 (Mon, 24 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+
+Added 2 enums, One for exit status and one for pipeends. This reduces the use of magic numbers of in process_stdin() and kill_reap_process(). 
+
+
+Index: process.c
+ process.c |   40 +++++++++++++++++++++++++---------------
+ 1 file changed, 25 insertions(+), 15 deletions(-)
+Index: process.h
+ process.h |   10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+------------------------------------------------------------------------
+r85 | s4703754 | 2023-04-25 23:35:30 +1000 (Tue, 25 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+
+Implemented a signal handler to handle when control c (SIGINT) has been pressed. Still a little buggy as it does not wait for sleep to finish. Added a boolean global variable to handle the signal.
+
+
+Index: process.c
+ process.c |   99 +++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 63 insertions(+), 36 deletions(-)
+Index: process.h
+ process.h |   13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+------------------------------------------------------------------------
+r86 | s4703754 | 2023-04-26 12:47:47 +1000 (Wed, 26 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/commands.c
+   M /trunk/a3/testuqwordiply.c
+
+Fixed up check_args to handle logic scenarios where the number of commands is more than the number of commands needed to start the program. Also fixed up printing errors to standard error when a file cannot be opened. Had to add apostrophes around it.
+
+
+Index: commands.c
+ commands.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r87 | s4703754 | 2023-04-26 16:52:36 +1000 (Wed, 26 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/commands.c
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+   M /trunk/a3/testuqwordiply.c
+
+Added a typedef struct for processes, to achieve the code when running things in parallel. Will also modify the kill_reap_process function and also process_forks() function. 
+
+
+Index: commands.c
+ commands.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Index: process.c
+ process.c |   72 ++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 35 insertions(+), 37 deletions(-)
+Index: process.h
+ process.h |   17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r88 | s4703754 | 2023-04-27 11:21:51 +1000 (Thu, 27 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+
+In process.h, changes made was that I declared a struct to hold onto the value of all process pids and exit statuses when running a single job. Took kill_reap_process() out of process_forks() and changed return value of process_forks to return a struct. Also moved sleep to process args after forks have been processed. Kill_reap_process is also in process_args which will be run after sleep.
+
+
+Index: process.c
+ process.c |  138 ++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 68 insertions(+), 70 deletions(-)
+Index: process.h
+ process.h |   25 +++++++++++++------------
+ 1 file changed, 13 insertions(+), 12 deletions(-)
+
+------------------------------------------------------------------------
+r89 | s4703754 | 2023-04-27 15:25:07 +1000 (Thu, 27 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+
+Fixed spelling in killed_reap_process from Stdeer to Stderr. Very critical bug
+
+
+Index: process.c
+ process.c |   25 +++++++++++++++++++------
+ 1 file changed, 19 insertions(+), 6 deletions(-)
+
+------------------------------------------------------------------------
+r90 | s4703754 | 2023-04-27 15:48:52 +1000 (Thu, 27 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+
+Removed the processing of exits status from kill_reap_process() and created a new function called report_test_job(). This function will print all the necessary things, depending on the exit code. It will return an integer of the passed tests. 
+
+
+Index: process.c
+ process.c |   27 ++++++++++++++++-----------
+ 1 file changed, 16 insertions(+), 11 deletions(-)
+Index: process.h
+ process.h |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+------------------------------------------------------------------------
+r91 | s4703754 | 2023-04-28 10:24:25 +1000 (Fri, 28 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/testuqwordiply.c
+
+Fixed logic in report_testjob() to ensure that right messages are printed out depending on exit status. Also removed boolean variable for main function to check if there is a failed test. Just did a comparison between passedtests and numoflines (variable of a struct that holds all valid jobs).
+
+
+Index: process.c
+ process.c |   71 +++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 36 insertions(+), 35 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |   13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+------------------------------------------------------------------------
+r92 | s4703754 | 2023-04-28 17:15:53 +1000 (Fri, 28 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+   M /trunk/a3/testuqwordiply.c
+
+Added a static volatile boolean value into process.h. Moved my Sigactions and intialising of sigactions into my main in testuqwordiply.c. Added notes for logic flow when processing parallel. 
+
+
+Index: process.c
+ process.c |   40 ++++++++++++++++++----------------------
+ 1 file changed, 18 insertions(+), 22 deletions(-)
+Index: process.h
+ process.h |    8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |   18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
+
+------------------------------------------------------------------------
+r93 | s4703754 | 2023-04-28 18:19:33 +1000 (Fri, 28 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+   M /trunk/a3/testuqwordiply.c
+
+Created a typedef struct in process.h called Jobs that holds number of tests passed and number of tests tested. Changed parameters for process_tests_args() to take a struct pointer of Jobs. Deleted other redundant int variables.
+
+
+Index: process.c
+ process.c |   15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+Index: process.h
+ process.h |   10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |   11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+
+------------------------------------------------------------------------
+r94 | s4703754 | 2023-04-29 18:09:55 +1000 (Sat, 29 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/testuqwordiply.c
+
+Implmented parallel mode in process_args(). Added a if statement in while loop to process the jobs the correct way depending on the optional commands. Added an if statement and for loop to properly process the jobs in parallel mode. 
+
+
+Index: process.c
+ process.c |   45 +++++++++++++++++++++++++--------------------
+ 1 file changed, 25 insertions(+), 20 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |    4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r95 | s4703754 | 2023-04-29 20:14:57 +1000 (Sat, 29 Apr 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+
+Added a handle sleep() function in process.c and an identifier for that function in process.h. Function will sleep for the remaining time if a sigint was sent from the user to interrupt the test. Up to styling this assignment now. 
+
+
+Index: process.c
+ process.c |   17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
+Index: process.h
+ process.h |    5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+------------------------------------------------------------------------
+r96 | s4703754 | 2023-05-01 13:38:43 +1000 (Mon, 01 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/commands.c
+   M /trunk/a3/commands.h
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+   M /trunk/a3/testuqwordiply.c
+
+Added function stubs (which will be filled in later) to all functions. Fixed up some spacing in process.h and commands.h. 
+
+
+Index: commands.c
+ commands.c |   41 +++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 39 insertions(+), 2 deletions(-)
+Index: commands.h
+ commands.h |    4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+Index: process.c
+ process.c |   66 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 64 insertions(+), 2 deletions(-)
+Index: process.h
+ process.h |    3 +++
+ 1 file changed, 3 insertions(+)
+Index: testuqwordiply.c
+ testuqwordiply.c |   48 ++++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 40 insertions(+), 8 deletions(-)
+
+------------------------------------------------------------------------
+r97 | s4703754 | 2023-05-01 18:04:53 +1000 (Mon, 01 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+
+In process_forks(), opened fd3 and fd4 to read from /dev/null (blackhole) so that no redundant files are created when preserving fds 3 and 4. 
+
+
+Index: process.c
+ process.c |    7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+------------------------------------------------------------------------
+r98 | s4703754 | 2023-05-01 18:21:57 +1000 (Mon, 01 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/commands.c
+   M /trunk/a3/commands.h
+   M /trunk/a3/testuqwordiply.c
+
+Reduced an 80 character line in commands.c to improve styling. Added comments to function identifiers and reasonable whitespace in commands.h. Also renamed typdef struct posCommands to PosCommands. Fixed indentaton errors in testuqwordiply.c. 
+
+
+Index: commands.c
+ commands.c |    5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+Index: commands.h
+ commands.h |   19 +++++++++++++------
+ 1 file changed, 13 insertions(+), 6 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |   11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+------------------------------------------------------------------------
+r99 | s4703754 | 2023-05-01 21:58:23 +1000 (Mon, 01 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/commands.c
+   M /trunk/a3/commands.h
+   M /trunk/a3/process.h
+   M /trunk/a3/testuqwordiply.c
+
+Added proper function comments to commands.c and testuqwordiply.c. Also added comments to function identifiers in commands.h. Reduced a line in process.h from 80 characters wide to 79.
+
+
+Index: commands.c
+ commands.c |  134 ++++++++++++++++++++++++++++++++++++++++++++++++++-----------
+ 1 file changed, 112 insertions(+), 22 deletions(-)
+Index: commands.h
+ commands.h |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Index: process.h
+ process.h |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |   98 ++++++++++++++++++++++++++++++++++++++++++++-----------
+ 1 file changed, 79 insertions(+), 19 deletions(-)
+
+------------------------------------------------------------------------
+r100 | s4703754 | 2023-05-01 23:14:33 +1000 (Mon, 01 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+   M /trunk/a3/testuqwordiply.c
+
+Fixed a bug in report_test_job(). Makes sure to increment count when both programs exit with the same exit status, and not just the correct exit status (0). If count is 3 (all standard output/ standard error and exit status matches), passed can be incremented before its returned to start the next test.
+
+
+Index: process.c
+ process.c |   86 +++++++++++++++++++++++++++++++++++++++++---------------------
+ 1 file changed, 57 insertions(+), 29 deletions(-)
+Index: process.h
+ process.h |   23 +++++++++++++----------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+------------------------------------------------------------------------
+r101 | s4703754 | 2023-05-01 23:24:07 +1000 (Mon, 01 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+
+Deleted a printing stub in process_args() when debugging previous bug.
+
+
+Index: process.c
+ process.c |    1 -
+ 1 file changed, 1 deletion(-)
+
+------------------------------------------------------------------------
+r102 | s4703754 | 2023-05-02 00:42:56 +1000 (Tue, 02 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+
+Renamed the ExitStatus, PipeEnds and Processes enum types in process.h to match styling standards in the spec. Those changes made in process.h also reflect the changes made in process.c when referring to enums in process.h. Also removed the use of magic numbers in pipe_fds() when adding pipe ends to int array by referncing the enums. 
+
+
+Index: process.c
+ process.c |   59 ++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 30 insertions(+), 29 deletions(-)
+Index: process.h
+ process.h |   11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+------------------------------------------------------------------------
+r103 | s4703754 | 2023-05-02 16:07:48 +1000 (Tue, 02 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+
+Fixed naming error in process_args. Changed sleep_time to sleeptime. Fixed indents in functions: process_args(), pipe_fds(), process_standard_input(), process_forks(), report_testjob(), kill_reap_process() and process_uqcmp().
+
+
+Index: process.c
+ process.c |   89 +++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 57 insertions(+), 32 deletions(-)
+
+------------------------------------------------------------------------
+r104 | s4703754 | 2023-05-02 16:18:35 +1000 (Tue, 02 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+
+Fixed one last incorrect indentation of } in pipe_fds(). Also reduced an 80 character line in report_testjob() to 79 characters. 
+
+
+Index: process.c
+ process.c |    5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+------------------------------------------------------------------------
+r105 | s4703754 | 2023-05-02 20:52:55 +1000 (Tue, 02 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+   M /trunk/a3/testuqwordiply.c
+
+Removed function comment stubs in process.c and added proper function comments into most functions for process.c. Fixed spelling mistake in testuqwordiply.c. Added one line comments to all function identifiers in process.h.
+
+
+Index: process.c
+ process.c |   66 +++++++++++++++++++++++++++++++++++++++++++++++++++++++-------
+ 1 file changed, 59 insertions(+), 7 deletions(-)
+Index: process.h
+ process.h |   21 +++++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |    1 -
+ 1 file changed, 1 deletion(-)
+
+------------------------------------------------------------------------
+r106 | s4703754 | 2023-05-03 00:26:12 +1000 (Wed, 03 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/testuqwordiply.c
+
+Added function comments to all functions in process.c. Reduced magic numbers in process_three_args() and process_opcom_args() by using strstr to check for substrings of "--" in the command line, that are not suppose to be there.
+
+
+Index: process.c
+ process.c |   64 ++++++++++++++++++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 56 insertions(+), 8 deletions(-)
+Index: testuqwordiply.c
+ testuqwordiply.c |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+------------------------------------------------------------------------
+r107 | s4703754 | 2023-05-03 17:45:39 +1000 (Wed, 03 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Fixed logic in check_opcom_args() to avoid use of magic numbers. Also reduced the use of magic numbers in check_starter_args(). Created pointers to job indexes and program indexes to reduce duplication of codes in other functions. Added these parameters that functions that need access to these pointers. (check_starter_args() and check_opcom_args(). 
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |   95 +++++++++++++++++++++++++++++++------------------------
+ 1 file changed, 54 insertions(+), 41 deletions(-)
+
+------------------------------------------------------------------------
+r108 | s4703754 | 2023-05-03 17:48:19 +1000 (Wed, 03 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/testuqwordiply.c
+
+Fixed whitespace issues and indentations errors in main function and check_opcom_args().
+
+
+Index: testuqwordiply.c
+ testuqwordiply.c |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+------------------------------------------------------------------------
+r109 | s4703754 | 2023-05-04 17:05:19 +1000 (Thu, 04 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+   M /trunk/a3/process.h
+
+Added inline function comments to both process.c and process.h to make code and logic easier to understand.
+
+
+Index: process.h
+ process.h |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Index: process.c
+ process.c |   57 +++++++++++++++++++++++++++++++++++++--------------------
+ 1 file changed, 37 insertions(+), 20 deletions(-)
+
+------------------------------------------------------------------------
+r110 | s4703754 | 2023-05-04 19:57:50 +1000 (Thu, 04 May 2023) | 2 lines
+Changed paths:
+   M /trunk/a3/process.c
+
+Updated handle_sleep() to ensure that it can handle multiple sigINT being sent to from the user. 
+
+
+Index: process.c
+ process.c |    6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
