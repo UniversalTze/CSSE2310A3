@@ -1,16 +1,18 @@
 # CSSE2310A3
 
-## UQWordiply
-Allows users to play the Wordiply game. It prompts the user to enter five guesses (words) that contain a given 3-4 letter combination of letters that are known as the "*starter word*". The goal is to enter valid words (based on a dictionary provided to us). After entering your score is reported as the sum of the lengths of the words entered, and the longest possible word(s) from the dictionary are also reported. The user can choose their own starter word, or the game will choose a random one for you.
+## Test UQWordiply
+The goal of this assignment was to demonstrate skills and ability in fundamental process management and communication concepts, and to further develop your C programming skills with a moderately complex program. I created a program called testuqwordiply that creates and manages communicating collections of processes that test a uqwordiply program (from A1) according to a job specification file that lists tests to be run. For various test cases, the program will run both a test version of uqwordiply and A1 one solution (available as demo-uqwordiply) and compare their standard outputs, standard errors and exit statuses and report the results. I was provided with must use program named uqcmp that compares the input arriving on two file descriptors. The assignment will also test your ability to code to a programming style guide and to use a revision control system appropriately.
 
 ## Comments 
 This assigment was developed in a linux environment. Vim was the main application used to write code and terminal was used to navigate around files. 
-To access the linux environment, a SSH or "Secure Shell" was used. 
+To access the linux environment, a SSH or "Secure Shell" was used. For version control, SVN was used. 
 
 ## Marks 
-- 62.25/65 (Autograder Score)
+- 60.1/65 (Autograder Score)
+- Future improvements: Make sure that file descriptors used (3 and 4) are not open. Or if currently open, close them and then create a new file descriptor using *open()*. 
 
-## Instructions to run the game
+### NEED TO MAKE CHANGES TO BELOW
+## Instructions to run the game 
 Notes: File can only be ran in UQ Linux environment through SSH.
 
 ### Parameters 
