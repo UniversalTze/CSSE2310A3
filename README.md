@@ -14,7 +14,7 @@ To access the linux environment, a SSH or "Secure Shell" was used. For version c
 ## Context on what program does
 Notes: File can only be ran in UQ Linux environment through SSH as the Makefile links to libraries provided in that environment. 
 
-### Parameters 
+## Parameters 
 
 The program (uqwordiply) accepts command line arguments as follows: ./testuqwordiply [--quiet] [--parallel] testprogram jobfile
 - --quiet – if present, the output (stdout and stderr) of the uqcmp processes is suppressed (i.e. not shown), otherwise it will output to testuqwordiply’s stdout and stderr respectively. This option does not change testuqwordiply’s output – it will still send output to stdout and stderr as described in this specification. Check example sections. 
@@ -34,7 +34,7 @@ Invalid command lines include (but may not be limited to) any of the following:
 - an unexpected argument is present 
 - Checking whether the program name and/or the file name are valid is not part of usage checking.
   
-#### Job Specification File
+### Job Specification File
 If the command line arguments are valid then testuqwordiply reads the job specification file listed on the command line. The whole file is read and checked prior to any test jobs being run.  If testuqwordiply is unable to open the job specification file for reading then it prints the following  message to stderr (with a following newline) and exit with an exit status of 3: 
 - *"testuqwordiply: Unable to open job file "filename""*  where filename is replaced by the name of the file (as given on the command line). (The double quotes around
 the filename is present in the output message.)
@@ -78,6 +78,63 @@ If the file is empty or contains only blank lines and/or comments:
 Replace filename with the job specification file name (with double quotes).
 Exit with status code 6.
 
-#### Example of job fib file
-!(Photo)[]
+#### Examples of Valid Job Files
+![Photo](https://github.com/UniversalTze/CSSE2310A3/blob/main/pictures/Example1.png)
+
+### Running Test Jobs and Reporting Results
+If all of the test jobs in the job specification file are valid then testuqwordiply must run the jobs, either in sequence (one after the other) or in parallel (if the --parallel argument is provided on the command line). The behaviour of these two different modes is described below.
+
+#### Sequential 
+If testuqwordiply is running jobs sequentially, then it must perform the following sequence of operations: 158
+For each job (in the order specified in the job specification file): 
+- Start the job (as described below in Running One Test Job) 
+-  Sleep for 2 seconds 
+- Send a SIGKILL signal to all processes that make up that job. (It is likely they are already dead, but 162 testuqwordiply does not need to check this prior to attempting to send a signal.) 
+- Report the result of the job (as described below in Reporting the Result of One Test Job).
+When one job is complete, the next job can be started.
+
+#### Parellel (--parallel)
+If testuqwordiply is running jobs in parallel, then it must perform the following sequence of operations:
+- Start all of the jobs specified in the job specification file (each individual job should be started as described
+below in Running One Test Job)
+- Sleep for two seconds
+- Send a SIGKILL signal to all processes that make up all jobs. (It is likely they are already dead, but 171 testuqwordiply does not need to check this prior to attempting to send a signal.)
+-  Iterate over each job (in the order specified in the job specification file) and report the result of the job (as described below in Reporting the Result of One Test Job).
+
+#### One Test Job
+Before running a test job, program will print **"Starting Job T"**, where T is replaced by the job number (1 - N , where N is the number of jobs in the job specification file). 
+Four Processes: 
+- an instance of the program being tested (as specified on the command line). Standard input for this process must come from the input file specified in the job. Standard output and standard error must be sent to file descriptor 3 of two instances of uqcmp (see description of uqcmp instances below).
+- an instance of demo-uqwordiply – which will must be found in the user’s PATH i.e. do not assume a particular location for demo-uqwordiply. Standard input for this process must come from the input file specified in the job. Standard output and standard error must be sent to file descriptor 4 of the two instances of uqcmp. This is the expected output from the test program. 
+- an instance of uqcmp which compares standard outputs – which will receive the standard output of the program being tested on file descriptor 3 and the standard output of demo-uqwordiply on file descriptor 4. uqcmp must be started with one command line argument: **“Job T stdout”** where T is replaced by the job number. uqcmp must be found in the user’s PATH – do not assume a particular location for uqcmp. 
+- an instance of uqcmp which compares standard errors – which will receive the standard error of the program being tested on file descriptor 3 and the standard error of demo-uqwordiply on file descriptor 4. uqcmp must be started with one command line argument: **“Job T stderr”** where T is replaced by the job number. uqcmp must be found in the user’s PATH – do not assume a particular location for uqcmp.
+
+If the --quiet option is provided on the testuqwordiply command line then the standard output and standard error of the uqcmp instances must be redirected to /dev/null. If --quiet is not specified, then the uqcmp instances must inherit standard output and standard error from testuqwordiply – i.e. send standard 199 output and standard error to wherever testuqwordiply’s standard output and standard error are being sent.
+
+#### Reporting Each Test Result 
+If any of the programs were unable to be executed (demo-uqwordiply, uqcmp or the program under test) 205 then testuqwordiply must print and flush the following to standard output (followed by a newline): 
+**"Job T: Unable to execute test"** (With the same behaviour for T as stated above). 
+The program will report in the given order below. All messages are sent to standard out (flushed at time of printing) and are terminated by a single new line. 
+- If the standard outputs of the two programs match (as determined by the exit status of that uqcmp instance), then testuqwordiply must print the following:
+**"Job T : Stdout matches"**
+- If the standard outputs do not match, then testuqwordiply must print the following: **"Job T : Stdout differs**"
+- If the standard errors of the two programs match (as determined by the exit status of that uqcmp instance), then testuqwordiply must print the following: **"Job T: Stderr matches"**
+-  If the standard errors do not match, then testuqwordiply must print the following: **"Job T: Stderr differs"**
+-  If both processes exit normally with the same exit status, then testuqwordiply must print the following: **"Job T: Exit status matches"**
+-  Otherwise it must print: **"Job T: Exit status differs"**
+
+#### Reporting Overall Result
+A test passes if the standard output, standard error and exit statuses of the program being tested and  demo-uqwordiply all match each other. For both sequential and parallel modes of operation, when all test jobs have been run and finished, then testuqwordiply must output the following message to stdout (followed by a newline): 
+**"testuqwordiply: M out of N tests passed"** 
+where M is replaced by the number of tests that passed, and N is replaced by the number of tests that have been run (which may be fewer than the number of the tests in the job specification file if the tests are interrupted).
+
+If all tests that have been run passed then testuqwordiply must exit with exit status 0 (indicating success), otherwise it must exit with exit status 1 (indicating failure).
+
+#### Interrupting the Tests
+If testuqwordiply receives a SIGINT (as usually sent by pressing Ctrl-C) then it should complete the test job(s) in progress (including any sleeps), not commence any more test jobs, and report the overall result based on the tests that have been run. 
+
+In practical terms, this will only make a difference in sequential mode – tests that haven’t been started will not be run. In parallel mode, all tests are started immediately, so all tests should be run to completion if a SIGINT is received.
+
+### Examples of test programs and its behaviour
+
 
