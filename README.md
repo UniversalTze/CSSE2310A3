@@ -136,5 +136,12 @@ If testuqwordiply receives a SIGINT (as usually sent by pressing Ctrl-C) then it
 In practical terms, this will only make a difference in sequential mode – tests that haven’t been started will not be run. In parallel mode, all tests are started immediately, so all tests should be run to completion if a SIGINT is received.
 
 ### Examples of test programs and its behaviour
+#### Simple One
+![Photo2](https://github.com/UniversalTze/CSSE2310A3/blob/main/pictures/Example2.png)
+#### Larger One
+![Photo3](https://github.com/UniversalTze/CSSE2310A3/blob/main/pictures/Example3.1.png)
+![Photo4](https://github.com/UniversalTze/CSSE2310A3/blob/main/pictures/Example3.2.png)
+
+
 
 
