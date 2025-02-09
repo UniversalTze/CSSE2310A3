@@ -14,6 +14,9 @@ To access the linux environment, a SSH or "Secure Shell" was used. For version c
 ## Context on what program does
 Notes: File can only be ran in UQ Linux environment through SSH as the Makefile links to libraries provided in that environment. 
 
+## Libraries Used
+![Photo5](https://github.com/UniversalTze/CSSE2310A3/blob/main/pictures/Provided_Libs.png)
+
 ## Parameters 
 
 The program (uqwordiply) accepts command line arguments as follows: ./testuqwordiply [--quiet] [--parallel] testprogram jobfile
