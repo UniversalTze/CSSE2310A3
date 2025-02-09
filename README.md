@@ -9,7 +9,7 @@ To access the linux environment, a SSH or "Secure Shell" was used. For version c
 
 ## Marks 
 - 60.1/65 (Autograder Score)
-- Future improvements: Make sure that file descriptors used (3 and 4) are not open. If currently open, close them and then create a new file descriptor using *open()*. 
+- **Future improvements**: Make sure that file descriptors used (3 and 4) are not open. If currently open, close them and then create a new file descriptor using *open()*. 
 
 ## Context on what program does
 Notes: File can only be ran in UQ Linux environment through SSH as the Makefile links to libraries provided in that environment. 
